@@ -53,7 +53,7 @@
                     try {
                         p.fulfil(givenFn(arg));
                     } catch (error) {
-                        p.rejected(error);
+                        p.reject(error);
                     }
                 };
             };
@@ -69,7 +69,7 @@
             } else if (state === 'fulfilled') {
                 async(onFulfilment, value);
             } else if (state === 'rejected') {
-                async(onRejection, value);
+                async(onRejection, reason);
             }
 
             return p;
