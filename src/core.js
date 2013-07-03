@@ -75,9 +75,11 @@
             return p;
         };
 
-        self.restrict = {
-            state: self.state,
-            then: self.then
+        self.restrict = function () {
+            return {
+                state: self.state,
+                then: self.then
+            };
         };
 
         return self;
