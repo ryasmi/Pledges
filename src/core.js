@@ -81,7 +81,7 @@
                 async(onRejection, reason);
             }
 
-            return p;
+            return p.restrict();
         };
 
         self.restrict = function () {
