@@ -6,6 +6,7 @@
     var w, x, y, z;
     var test = require('micro-assert').assert();
     var promise = require('./release.min.js').promise;
+    test.logSuccess = true;
 
     // Test method availability.
     x = promise();
@@ -17,7 +18,6 @@
 
     // Test fulfilled promise.
     x.then(function (value) {
-        console.log(this);
         test.equal(x.state(), 'fulfilled', 'State returns fulfilled');
         test.equal(x.restrict().state(), 'fulfilled', 'State of restricted object returns fulfilled');
         test.equal(value, 10, 'Call onFulfilled with value when `then` is called before fulfilment');
@@ -83,7 +83,7 @@
     }).then(function () {
         test.equal(false, true, 'Do not call onFulfilled with reason when `then` is called after rejection in a chain');
     }, function (reason) {
-        test.equal(reason.message, 10, 'Call onRejected with reason when `then` is called after rejection in a chain');
+        test.equal(Number(reason.message), 10, 'Call onRejected with reason when `then` is called after rejection in a chain');
     });
 
     // Test chaining (after fulfilment).
@@ -108,7 +108,7 @@
     }).then(function () {
         test.equal(false, true, 'Do not call onFulfilled with reason when `then` is called after fulfilment in a chain');
     }, function (reason) {
-        test.equal(reason.message, 10, 'Call onFulfilled with reason when `then` is called after fulfilment in a chain');
+        test.equal(Number(reason.message), 10, 'Call onRejected with value when `then` is called after fulfilment in a chain');
     });
 
     return test.result();
