@@ -64,15 +64,15 @@
             onRejection = fn(onRejection);
 
             if (state === 'unfulfilled') {
-                    fulfilled.push(onFulfilment);
-                    rejected.push(onRejection);
-                    if (state === 'fulfilled' && fulfilled.indexOf(onFulfilment) !== -1) {
-                        onFulfilment(value);
-                        fulfilled.splice(fulfilled.splice(onFulfilment), 1);
-                    } else if (state === 'rejected' && rejected.indexOf(onRejection) !== -1) {
-                        onRejection(reason);
-                        rejected.splice(fulfilled.splice(onRejection), 1);
-                    }
+                fulfilled.push(onFulfilment);
+                rejected.push(onRejection);
+                if (state === 'fulfilled' && fulfilled.indexOf(onFulfilment) !== -1) {
+                    fulfilled.splice(fulfilled.indexOf(onFulfilment), 1);
+                    async(onFulfilment, value);
+                } else if (state === 'rejected' && rejected.indexOf(onRejection) !== -1) {
+                    rejected.splice(fulfilled.indexOf(onRejection), 1);
+                    async(onRejection, reason);
+                }
             } else if (state === 'fulfilled') {
                 async(onFulfilment, value);
             } else if (state === 'rejected') {
