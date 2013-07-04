@@ -107,8 +107,10 @@
         return 0;
     }).then(function () {
         test.equal(false, true, 'Do not call onFulfilled with reason when `then` is called after fulfilment in a chain');
+        test.result();
     }, function (reason) {
         test.equal(Number(reason.message), 10, 'Call onRejected with value when `then` is called after fulfilment in a chain');
+        test.result();
     });
 
     return test.result();
