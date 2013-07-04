@@ -20,10 +20,11 @@
 
         self.fulfil = function (givenValue) {
             if (state === 'unfulfilled') {
-                state = 'fulfilled';
                 value = givenValue;
+                state = 'fulfilled';
                 fulfilled.forEach(function (fn) {
                     async(fn, value);
+                    fulfilled.splice(fulfilled.indexOf(fn), 1);
                 });
             }
 
@@ -32,10 +33,11 @@
 
         self.reject = function (givenReason) {
             if (state === 'unfulfilled') {
-                state = 'rejected';
                 reason = givenReason;
+                state = 'rejected';
                 rejected.forEach(function (fn) {
                     async(fn, reason);
+                    rejected.splice(rejected.indexOf(fn), 1);
                 });
             }
 
@@ -65,6 +67,11 @@
                 setTimeout(function () {
                     fulfilled.push(onFulfilment);
                     rejected.push(onRejection);
+                    if (state === 'fulfilled' && fulfilled.indexOf(onFulfilment) !== -1) {
+                        onFulfilment(value);
+                    } else if (state === 'rejected' && rejected.indexOf(onRejection) !== -1) {
+                        onRejection(reason);
+                    }
                 });
             } else if (state === 'fulfilled') {
                 async(onFulfilment, value);
