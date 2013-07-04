@@ -64,7 +64,6 @@
             onRejection = fn(onRejection);
 
             if (state === 'unfulfilled') {
-                setTimeout(function () {
                     fulfilled.push(onFulfilment);
                     rejected.push(onRejection);
                     if (state === 'fulfilled' && fulfilled.indexOf(onFulfilment) !== -1) {
@@ -74,7 +73,6 @@
                         onRejection(reason);
                         rejected.splice(fulfilled.splice(onRejection), 1);
                     }
-                });
             } else if (state === 'fulfilled') {
                 async(onFulfilment, value);
             } else if (state === 'rejected') {
