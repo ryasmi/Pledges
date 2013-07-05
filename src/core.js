@@ -8,12 +8,6 @@
         var fulfilled = [];
         var rejected = [];
 
-        var async = function (fn, arg) {
-            setTimeout(function () {
-                fn(arg);
-            });
-        };
-
         self.state = function () {
             return state;
         };
@@ -23,8 +17,8 @@
                 value = givenValue;
                 state = 'fulfilled';
                 fulfilled.forEach(function (fn) {
-                    async(fn, value);
                     fulfilled.splice(fulfilled.indexOf(fn), 1);
+                    fn(value);
                 });
             }
 
@@ -36,8 +30,8 @@
                 reason = givenReason;
                 state = 'rejected';
                 rejected.forEach(function (fn) {
-                    async(fn, reason);
                     rejected.splice(rejected.indexOf(fn), 1);
+                    fn(reason);
                 });
             }
 
@@ -52,11 +46,13 @@
                 }
 
                 return function (arg) {
-                    try {
-                        p.fulfil(givenFn(arg));
-                    } catch (error) {
-                        p.reject(error);
-                    }
+                    setTimeout(function () {
+                        try {
+                            p.fulfil(givenFn(arg));
+                        } catch (error) {
+                            p.reject(error);
+                        }
+                    });
                 };
             };
 
@@ -68,15 +64,15 @@
                 rejected.push(onRejection);
                 if (state === 'fulfilled' && fulfilled.indexOf(onFulfilment) !== -1) {
                     fulfilled.splice(fulfilled.indexOf(onFulfilment), 1);
-                    async(onFulfilment, value);
+                    onFulfilment(value);
                 } else if (state === 'rejected' && rejected.indexOf(onRejection) !== -1) {
                     rejected.splice(fulfilled.indexOf(onRejection), 1);
-                    async(onRejection, reason);
+                    onRejection(reason);
                 }
             } else if (state === 'fulfilled') {
-                async(onFulfilment, value);
+                onFulfilment(value);
             } else if (state === 'rejected') {
-                async(onRejection, reason);
+                onRejection(reason);
             }
 
             return p.restrict();
