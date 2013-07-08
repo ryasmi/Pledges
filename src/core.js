@@ -2,20 +2,24 @@
     'use strict';
     var Promise = function () {
         var self = this;
-        var state = 'unfulfilled';
+        var state = 0;
         var value = null;
         var reason = null;
         var fulfilled = [];
         var rejected = [];
 
-        self.state = function () {
-            return state;
-        };
+        self.state = (function () {
+            var states = ['unfulfilled', 'fulfilled', 'rejected'];
+
+            return function () {
+                return states[state];
+            };
+        }());
 
         self.fulfil = function (givenValue) {
-            if (state === 'unfulfilled') {
+            if (state === 0) {
                 value = givenValue;
-                state = 'fulfilled';
+                state = 1;
                 fulfilled.forEach(function (fn) {
                     fulfilled.splice(fulfilled.indexOf(fn), 1);
                     fn(value);
@@ -26,9 +30,9 @@
         };
 
         self.reject = function (givenReason) {
-            if (state === 'unfulfilled') {
+            if (state === 0) {
                 reason = givenReason;
-                state = 'rejected';
+                state = 2;
                 rejected.forEach(function (fn) {
                     rejected.splice(rejected.indexOf(fn), 1);
                     fn(reason);
@@ -59,19 +63,19 @@
             onFulfilment = fn(onFulfilment);
             onRejection = fn(onRejection);
 
-            if (state === 'unfulfilled') {
+            if (state === 0) {
                 fulfilled.push(onFulfilment);
                 rejected.push(onRejection);
-                if (state === 'fulfilled' && fulfilled.indexOf(onFulfilment) !== -1) {
+                if (state === 1 && fulfilled.indexOf(onFulfilment) !== -1) {
                     fulfilled.splice(fulfilled.indexOf(onFulfilment), 1);
                     onFulfilment(value);
-                } else if (state === 'rejected' && rejected.indexOf(onRejection) !== -1) {
+                } else if (state === 2 && rejected.indexOf(onRejection) !== -1) {
                     rejected.splice(fulfilled.indexOf(onRejection), 1);
                     onRejection(reason);
                 }
-            } else if (state === 'fulfilled') {
+            } else if (state === 1) {
                 onFulfilment(value);
-            } else if (state === 'rejected') {
+            } else if (state === 2) {
                 onRejection(reason);
             }
 
