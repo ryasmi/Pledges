@@ -19,6 +19,12 @@ Reference the [raw Github version](https://raw.github.com/ryansmith94/Pledges/ma
 
 Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var promise = require("pledges").promise;` in your JavaScript file.
 
+Pledges is compatible with requireJS and can be used by wrapping your code in the following block:
+```JavaScript
+require(['promise'], function (promise) {
+	// Your code.
+});
+
 ## 2 Getting Started
 To create a new promise, use the global "promise" function.
 ```JavaScript

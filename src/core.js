@@ -92,7 +92,16 @@
         return self;
     };
 
-    scope.promise = function () {
+    var constructor = function () {
         return new Promise();
     };
+
+    // AMD Support.
+    if (typeof scope.define === 'Function') {
+        scope.define('promise', [], function () {
+            return constructor;
+        });
+    } else {
+        scope.promise = constructor;
+    }
 }(this));
