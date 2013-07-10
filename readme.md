@@ -24,6 +24,7 @@ Pledges is compatible with requireJS and can be used by wrapping your code in th
 require(['promise'], function (promise) {
 	// Your code.
 });
+```
 
 ## 2 Getting Started
 To create a new promise, use the global "promise" function.
