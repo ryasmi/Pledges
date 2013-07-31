@@ -15,9 +15,8 @@ Reference the [raw Github version](https://raw.github.com/ryansmith94/Pledges/ma
 
 ## Getting Started
 ## 1 Installation
+### 1.1 Browser
 Reference the [raw Github version](https://raw.github.com/ryansmith94/Pledges/master/build/release.min.js) of [release.min.js](https://www.github.com/ryansmith94/Pledges/blob/master/build/release.min.js) in your code.
-
-Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var promise = require("pledges").promise;` in your JavaScript file.
 
 Pledges is compatible with requireJS and can be used by wrapping your code in the following block:
 ```JavaScript
@@ -25,6 +24,15 @@ require(['promise'], function (promise) {
 	// Your code.
 });
 ```
+
+### 1.2 Node
+Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var promise = require("pledges").promise;` in your JavaScript file.
+
+### 1.3 Versioning
+This project is maintained under the [semantic versioning guidlines](http://semver.org/). This means that releases will have the following format `<major>.<minor>.<patch>`.
+* Breaking backward compatibility bumps the major (and resets the minor and patch).
+* New additions without breaking backward compatibility bumps the minor (and resets the patch).
+* Bug fixes and misc changes bumps the patch.
 
 ## 2 Getting Started
 To create a new promise, use the global "promise" function.
