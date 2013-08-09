@@ -26,7 +26,7 @@ require(['promise'], function (promise) {
 ```
 
 ### 1.2 Node
-Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var promise = require("pledges").promise;` in your JavaScript file.
+Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var promise = require('pledges').promise;` in your JavaScript file.
 
 ### 1.3 Versioning
 This project is maintained under the [semantic versioning guidlines](http://semver.org/). This means that releases will have the following format `<major>.<minor>.<patch>`.
@@ -94,7 +94,7 @@ promise().state();
 None.
 
 **Returns**   
-{String} state: The current state of the promise (either "unfulfilled", "fulfilled", or "rejected").
+{String} state: The current state of the promise (either 'unfulfilled', 'fulfilled', or 'rejected').
 
 ### 3.5 restrict
 Restricts access to the promise.
