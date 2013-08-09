@@ -26,6 +26,7 @@
 
         before(function () {
             promise = require('../src/core.js').promise;
+            expect(promise).to.be.a('function');
         });
 
         testFnExposure('then');
