@@ -8,6 +8,21 @@
         var fulfilled = [];
         var rejected = [];
 
+        var changeStateFn = function (newState, buffer) {
+            return function (givenValue) {
+                if (state === 0) {
+                    value = givenValue;
+                    state = newState;
+                    buffer.forEach(function (fn, index) {
+                        buffer.splice(index, 1);
+                        fn();
+                    });
+                }
+
+                return self;
+            };
+        };
+
         self.state = (function () {
             var states = ['unfulfilled', 'fulfilled', 'rejected'];
 
@@ -16,31 +31,8 @@
             };
         }());
 
-        self.fulfil = function (givenValue) {
-            if (state === 0) {
-                value = givenValue;
-                state = 1;
-                fulfilled.forEach(function (fn) {
-                    fulfilled.splice(fulfilled.indexOf(fn), 1);
-                    fn(value);
-                });
-            }
-
-            return self;
-        };
-
-        self.reject = function (givenReason) {
-            if (state === 0) {
-                reason = givenReason;
-                state = 2;
-                rejected.forEach(function (fn) {
-                    rejected.splice(rejected.indexOf(fn), 1);
-                    fn(reason);
-                });
-            }
-
-            return self;
-        };
+        self.fulfil = changeStateFn(1, fulfilled);
+        self.reject = changeStateFn(2, rejected);
 
         self.then = function (onFulfilment, onRejection) {
             var p = new Promise();
