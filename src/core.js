@@ -4,7 +4,6 @@
         var self = this;
         var state = 0;
         var value = null;
-        var reason = null;
         var fulfilled = [];
         var rejected = [];
 
@@ -41,10 +40,10 @@
                     return function () {};
                 }
 
-                return function (arg) {
+                return function () {
                     setTimeout(function () {
                         try {
-                            p.fulfil(givenFn(arg));
+                            p.fulfil(givenFn(value));
                         } catch (error) {
                             p.reject(error);
                         }
@@ -60,15 +59,15 @@
                 rejected.push(onRejection);
                 if (state === 1 && fulfilled.indexOf(onFulfilment) !== -1) {
                     fulfilled.splice(fulfilled.indexOf(onFulfilment), 1);
-                    onFulfilment(value);
+                    onFulfilment();
                 } else if (state === 2 && rejected.indexOf(onRejection) !== -1) {
                     rejected.splice(fulfilled.indexOf(onRejection), 1);
-                    onRejection(reason);
+                    onRejection();
                 }
             } else if (state === 1) {
-                onFulfilment(value);
+                onFulfilment();
             } else if (state === 2) {
-                onRejection(reason);
+                onRejection();
             }
 
             return p.restrict();
