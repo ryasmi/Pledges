@@ -88,7 +88,7 @@
     };
 
     // AMD Support.
-    if (typeof scope.define === 'Function') {
+    if (typeof scope.define === 'function') {
         scope.define('promise', [], function () {
             return constructor;
         });
