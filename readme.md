@@ -82,7 +82,7 @@ promise().then(onFulfilment, onRejection);
 * {Function} onRejection: A function to be called when the promise is rejected.
 
 **Returns**   
-{Object} promise: Promises the completion of onFulfilment or onRejection (restricted promise - see restrict method).
+{Object} restrictedPromise: Promises the completion of onFulfilment or onRejection (restricted promise - see restrict method).
 
 ### 3.4 state
 The current state of the promise.
@@ -94,7 +94,7 @@ promise().state();
 None.
 
 **Returns**   
-{Object} state: The current state of the promise (either "unfulfilled", "fulfilled", or "rejected").
+{String} state: The current state of the promise (either "unfulfilled", "fulfilled", or "rejected").
 
 ### 3.5 restrict
 Restricts access to the promise.
