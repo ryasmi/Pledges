@@ -47,7 +47,7 @@
         });
 
         describe('state()', function () {
-            var states = ['unfulfilled', 'fulfilled', 'rejected'];
+            var states = ['pending', 'fulfilled', 'rejected'];
             it('should return \'' + states[0] + '\' before state is changed', function () {
                 var myPromise = promise();
                 expect(myPromise.state()).to.equal(states[0]);
@@ -104,7 +104,7 @@
             });
 
             describe('state()', function () {
-                var states = ['unfulfilled', 'fulfilled', 'rejected'];
+                var states = ['pending', 'fulfilled', 'rejected'];
                 var getState = function (stateFn, expectedState, done) {
                     return function () {
                         expect(stateFn()).to.equal(expectedState);
@@ -131,7 +131,7 @@
                     myPromise.then(incorrectCallback, getState(myPromise.state, states[2], done));
                 });
             });
-            
+
             describe('then()', function () {
                 it('should call chained fulfilled callback after calling fulfilled callback', function (done) {
                     promise().fulfil(myArg).then(pass, fail).then(correctCallback(done), incorrectCallback);

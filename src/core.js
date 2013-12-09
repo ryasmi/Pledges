@@ -23,7 +23,7 @@
         };
 
         self.state = (function () {
-            var states = ['unfulfilled', 'fulfilled', 'rejected'];
+            var states = ['pending', 'fulfilled', 'rejected'];
 
             return function () {
                 return states[state];
