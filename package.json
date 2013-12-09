@@ -1,43 +1,43 @@
 {
-  "name": "pledges",
-  "author": "ryansmith94",
-  "homepage": "https://www.github.com/ryansmith94/Pledges",
-  "description": "A micro JS library for promises based on the Promises/A+ specification.",
-  "keywords": [
-    "Promise",
-    "Pledges"
-  ],
-  "bugs": {
-    "url": "http://github.com/ryansmith94/Pledges/issues"
-  },
-  "version": "1.0.16",
-  "licence": {
-    "type": "MIT",
-    "url": "https://github.com/ryansmith94/Pledges/blob/master/license.md"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ryansmith94/Pledges.git"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.5.4",
-    "grunt-contrib-uglify": "~0.2.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-cli": "~0.1.8",
-    "grunt-simple-mocha": "~0.4.0",
-    "chai": "~1.7.2",
-    "mocha": "~1.12.1"
-  },
-  "scripts": {
-    "test": "grunt"
-  },
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "readmeFilename": "readme.md",
-  "main": "build/release.min.js",
-  "directories": {
-    "build": "build"
-  }
+    "name": "pledges",
+    "author": "ryansmith94",
+    "homepage": "https://www.github.com/ryansmith94/Pledges",
+    "description": "A micro JS library for promises based on the Promises/A+ specification.",
+    "keywords": [
+        "Promise",
+        "Pledges"
+    ],
+    "bugs": {
+        "url": "http://github.com/ryansmith94/Pledges/issues"
+    },
+    "version": "2.0.0",
+    "licence": {
+        "type": "MIT",
+        "url": "https://github.com/ryansmith94/Pledges/blob/master/license.md"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ryansmith94/Pledges.git"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.5.4",
+        "grunt-contrib-uglify": "~0.2.1",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-cli": "~0.1.8",
+        "grunt-simple-mocha": "~0.4.0",
+        "chai": "~1.7.2",
+        "mocha": "~1.12.1"
+    },
+    "scripts": {
+        "test": "grunt"
+    },
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "readmeFilename": "readme.md",
+    "main": "build/release.min.js",
+    "directories": {
+        "build": "build"
+    }
 }
