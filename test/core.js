@@ -145,6 +145,12 @@
                 it('should call chained rejected callback after calling rejected callback', function (done) {
                     promise().reject(myArg).then(pass, fail).then(incorrectCallback, correctCallback(done));
                 });
+                it('should call chained fulfilled callback after calling fulfilled protection callback', function (done) {
+                    promise().fulfil(myArg).then(10, 10).then(correctCallback(done), incorrectCallback);
+                });
+                it('should call chained rejected callback after calling rejected protection callback', function (done) {
+                    promise().reject(myArg).then(10, 10).then(incorrectCallback, correctCallback(done));
+                });
             });
         });
     });

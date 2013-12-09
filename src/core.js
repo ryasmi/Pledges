@@ -35,9 +35,15 @@
 
         self.then = function (onFulfilment, onRejection) {
             var p = new Promise();
-            var fn = function (givenFn) {
+            var fail = function (reason) {
+                throw reason;
+            };
+            var pass = function (value) {
+                return value;
+            };
+            var fn = function (givenFn, protection) {
                 if (typeof givenFn !== 'function') {
-                    return function () {};
+                    givenFn = protection;
                 }
 
                 return function () {
@@ -51,8 +57,8 @@
                 };
             };
 
-            onFulfilment = fn(onFulfilment);
-            onRejection = fn(onRejection);
+            onFulfilment = fn(onFulfilment, pass);
+            onRejection = fn(onRejection, fail);
 
             if (state === 0) {
                 fulfilled.push(onFulfilment);
