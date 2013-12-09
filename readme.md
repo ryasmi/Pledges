@@ -1,5 +1,5 @@
 # [Pledges](https://www.github.com/ryansmith94/Pledges)
-A micro JS library for promises based on the [Promises/A+ specification](http://promises-aplus.github.io/promises-spec/).
+A micro JS library for promises *based* on the [Promises/A+ specification](http://promises-aplus.github.io/promises-spec/).
 
 [![Build Status](https://travis-ci.org/ryansmith94/Pledges.png)](https://travis-ci.org/ryansmith94/Pledges)
 
