@@ -1,12 +1,12 @@
 # [Pledges](https://www.github.com/ryansmith94/Pledges)
 A micro JS library for promises based on the [Promises/A+ specification](http://promises-aplus.github.io/promises-spec/).
 
-[![Build Status](https://travis-ci.org/ryansmith94/Pledges.png)](https://travis-ci.org/ryansmith94/Pledges)   
+[![Build Status](https://travis-ci.org/ryansmith94/Pledges.png)](https://travis-ci.org/ryansmith94/Pledges)
 
-**License**   
+**License**
 [This work is licensed under a MIT License.](https://github.com/ryansmith94/Pledges/blob/master/license.md)
 
-**Contributing**   
+**Contributing**
 Please make contributions by [forking](https://github.com/ryansmith94/Pledges/fork "/fork") the project and creating a [pull-request](https://github.com/ryansmith94/Pledges/pull/new/master "/pull-request"). Other contributions include maintaining the [Wiki](https://github.com/ryansmith94/Pledges/wiki "/wiki") and [issues](https://github.com/ryansmith94/Pledges/issues?state=open "/issues").
 
 # Documentation
@@ -40,10 +40,10 @@ To create a new promise, use the global "promise" function.
 promise();
 ```
 
-**Arguments**   
+**Arguments**
 None.
 
-**Returns**   
+**Returns**
 {Object} promise: A structure that can be manipulated like a promise.
 
 ## 3 Methods
@@ -56,7 +56,7 @@ promise().fulfil(value);
 **Arguments**
 * {Object} value: The promised value.
 
-**Returns**   
+**Returns**
 {Object} promise: The current promise.
 
 ### 3.2 reject
@@ -68,7 +68,7 @@ promise().reject(reason);
 **Arguments**
 * {Object} reason: The reason why the promise was rejected.
 
-**Returns**   
+**Returns**
 {Object} promise: The current promise.
 
 ### 3.3 then
@@ -81,7 +81,7 @@ promise().then(onFulfilment, onRejection);
 * {Function} onFulfilment: A function to be called when the promise is fulfilled.
 * {Function} onRejection: A function to be called when the promise is rejected.
 
-**Returns**   
+**Returns**
 {Object} restrictedPromise: Promises the completion of onFulfilment or onRejection (restricted promise - see restrict method).
 
 ### 3.4 state
@@ -90,11 +90,11 @@ The current state of the promise.
 promise().state();
 ```
 
-**Arguments**   
+**Arguments**
 None.
 
-**Returns**   
-{String} state: The current state of the promise (either 'unfulfilled', 'fulfilled', or 'rejected').
+**Returns**
+{String} state: The current state of the promise (either 'pending', 'fulfilled', or 'rejected').
 
 ### 3.5 restrict
 Restricts access to the promise.
@@ -102,8 +102,8 @@ Restricts access to the promise.
 promise().restrict();
 ```
 
-**Arguments**   
+**Arguments**
 None.
 
-**Returns**   
+**Returns**
 {Object} promise: A promise that provides access to the `then` and `state` methods only.
