@@ -12,8 +12,7 @@
                 if (state === 0) {
                     value = givenValue;
                     state = newState;
-                    buffer.forEach(function (fn, index) {
-                        buffer.splice(index, 1);
+                    buffer.forEach(function (fn) {
                         fn();
                     });
                 }
@@ -34,13 +33,7 @@
         self.reject = changeStateFn(2, rejected);
 
         self.then = function (onFulfilment, onRejection) {
-            var p = new Promise();
-            var fail = function (reason) {
-                throw reason;
-            };
-            var pass = function (value) {
-                return value;
-            };
+            var p = constructor();
             var fn = function (givenFn, protection) {
                 if (typeof givenFn !== 'function') {
                     givenFn = protection;
@@ -57,19 +50,16 @@
                 };
             };
 
-            onFulfilment = fn(onFulfilment, pass);
-            onRejection = fn(onRejection, fail);
+            onFulfilment = fn(onFulfilment, function (value) {
+                return value;
+            });
+            onRejection = fn(onRejection, function (reason) {
+                throw reason;
+            });
 
             if (state === 0) {
                 fulfilled.push(onFulfilment);
                 rejected.push(onRejection);
-                if (state === 1 && fulfilled.indexOf(onFulfilment) !== -1) {
-                    fulfilled.splice(fulfilled.indexOf(onFulfilment), 1);
-                    onFulfilment();
-                } else if (state === 2 && rejected.indexOf(onRejection) !== -1) {
-                    rejected.splice(fulfilled.indexOf(onRejection), 1);
-                    onRejection();
-                }
             } else if (state === 1) {
                 onFulfilment();
             } else if (state === 2) {
