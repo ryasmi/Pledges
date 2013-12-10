@@ -1,6 +1,6 @@
 (function (scope) {
     'use strict';
-    var Promise = function () {
+    var Deferred = function () {
         var self = this;
         var state = 0;
         var value = null;
@@ -80,15 +80,15 @@
     };
 
     var constructor = function () {
-        return new Promise();
+        return new Deferred();
     };
 
     // AMD Support.
     if (typeof scope.define === 'function') {
-        scope.define('promise', [], function () {
+        scope.define('deferred', [], function () {
             return constructor;
         });
     } else {
-        scope.promise = constructor;
+        scope.deferred = constructor;
     }
 }(this));

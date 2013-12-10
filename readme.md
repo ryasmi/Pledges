@@ -10,23 +10,19 @@ A micro JS library for promises *based* on the [Promises/A+ specification](http:
 Please make contributions by [forking](https://github.com/ryansmith94/Pledges/fork "/fork") the project and creating a [pull-request](https://github.com/ryansmith94/Pledges/pull/new/master "/pull-request"). Other contributions include maintaining the [Wiki](https://github.com/ryansmith94/Pledges/wiki "/wiki") and [issues](https://github.com/ryansmith94/Pledges/issues?state=open "/issues").
 
 # Documentation
-## Installation
-Reference the [raw Github version](https://raw.github.com/ryansmith94/Pledges/master/build/release.min.js) of [release.min.js](https://www.github.com/ryansmith94/Pledges/blob/master/build/release.min.js) in your code.
-
-## Getting Started
 ## 1 Installation
 ### 1.1 Browser
 Reference the [raw Github version](https://raw.github.com/ryansmith94/Pledges/master/build/release.min.js) of [release.min.js](https://www.github.com/ryansmith94/Pledges/blob/master/build/release.min.js) in your code.
 
 Pledges is compatible with requireJS and can be used by wrapping your code in the following block:
 ```JavaScript
-require(['promise'], function (promise) {
+require(['deferred'], function (deferred) {
 	// Your code.
 });
 ```
 
 ### 1.2 Node
-Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var promise = require('pledges').promise;` in your JavaScript file.
+Pledges is also available as a node package called "pledges". You can install it to your local repository using `npm install pledges --save-dev` and you can use the library with node by using `var deferred = require('pledges').deferred;` in your JavaScript file.
 
 ### 1.3 Versioning
 This project is maintained under the [semantic versioning guidlines](http://semver.org/). This means that releases will have the following format `<major>.<minor>.<patch>`.
@@ -35,16 +31,16 @@ This project is maintained under the [semantic versioning guidlines](http://semv
 * Bug fixes and misc changes bumps the patch.
 
 ## 2 Getting Started
-To create a new promise, use the global "promise" function.
+To create a new deferred, use the global "deferred" function.
 ```JavaScript
-promise();
+deferred();
 ```
 
 **Arguments**
 None.
 
 **Returns**
-{Object} promise: A structure that can be manipulated like a promise.
+{Object} deferred: A structure that can be manipulated like a deferred.
 
 ## 3 Methods
 ### 3.1 resolve
@@ -57,24 +53,24 @@ deferred().resolve(value);
 * {Object} value: The promised value.
 
 **Returns**
-{Object} promise: The current promise.
+{Object} deferred: The current deferred.
 
 ### 3.2 reject
 Rejects the promise.
 ```JavaScript
-promise().reject(reason);
+deferred().reject(reason);
 ```
 
 **Arguments**
 * {Object} reason: The reason why the promise was rejected.
 
 **Returns**
-{Object} promise: The current promise.
+{Object} deferred: The current deferred.
 
 ### 3.3 then
 What to do when the state of the promise has changed.
 ```JavaScript
-promise().then(onFulfilment, onRejection);
+deferred().then(onFulfilment, onRejection);
 ```
 
 **Arguments**
@@ -82,12 +78,12 @@ promise().then(onFulfilment, onRejection);
 * {Function} onRejection: A function to be called when the promise is rejected.
 
 **Returns**
-{Object} restrictedPromise: Promises the completion of onFulfilment or onRejection (restricted promise - see restrict method).
+{Object} restrictedDeferred: Promises the completion of onFulfilment or onRejection (restricted deferred - see restrict method).
 
 ### 3.4 state
 The current state of the promise.
 ```JavaScript
-promise().state();
+deferred().state();
 ```
 
 **Arguments**
@@ -97,13 +93,13 @@ None.
 {String} state: The current state of the promise (either 'pending', 'fulfilled', or 'rejected').
 
 ### 3.5 restrict
-Restricts access to the promise.
+Restricts access to the deferred.
 ```JavaScript
-promise().restrict();
+deferred().restrict();
 ```
 
 **Arguments**
 None.
 
 **Returns**
-{Object} promise: A promise that provides access to the `then` and `state` methods only.
+{Object} deferred: A deferred that provides access to the `then` and `state` methods only.
