@@ -30,7 +30,7 @@
             };
         }());
 
-        self.fulfil = changeStateFn(1, fulfilled);
+        self.resolve = changeStateFn(1, fulfilled);
         self.reject = changeStateFn(2, rejected);
 
         self.then = function (onFulfilment, onRejection) {
@@ -49,7 +49,7 @@
                 return function () {
                     setTimeout(function () {
                         try {
-                            p.fulfil(givenFn(value));
+                            p.resolve(givenFn(value));
                         } catch (error) {
                             p.reject(error);
                         }

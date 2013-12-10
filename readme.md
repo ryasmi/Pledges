@@ -47,10 +47,10 @@ None.
 {Object} promise: A structure that can be manipulated like a promise.
 
 ## 3 Methods
-### 3.1 fulfil
-Fulfils the promise.
+### 3.1 resolve
+Resolves the promise.
 ```JavaScript
-promise().fulfil(value);
+deferred().resolve(value);
 ```
 
 **Arguments**

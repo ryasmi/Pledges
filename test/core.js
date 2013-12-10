@@ -30,7 +30,7 @@
         });
 
         testFnExposure('then');
-        testFnExposure('fulfil');
+        testFnExposure('resolve');
         testFnExposure('reject');
         testFnExposure('state');
         testFnExposure('restrict');
@@ -54,7 +54,7 @@
             });
             it('should return \'' + states[1] + '\' once ' + states[1], function () {
                 var myPromise = promise();
-                myPromise.fulfil();
+                myPromise.resolve();
                 expect(myPromise.state()).to.equal(states[1]);
                 myPromise.reject();
                 expect(myPromise.state()).to.equal(states[1]);
@@ -63,7 +63,7 @@
                 var myPromise = promise();
                 myPromise.reject();
                 expect(myPromise.state()).to.equal(states[2]);
-                myPromise.fulfil();
+                myPromise.resolve();
                 expect(myPromise.state()).to.equal(states[2]);
             });
         });
@@ -79,11 +79,11 @@
             it('should call the fulfilled callback when fulfilled after being called', function (done) {
                 var myPromise = promise();
                 myPromise.then(correctCallback(done), incorrectCallback);
-                myPromise.fulfil(myArg);
+                myPromise.resolve(myArg);
             });
             it('should call the fulfilled callback when fulfilled before being called', function (done) {
                 var myPromise = promise();
-                myPromise.fulfil(myArg);
+                myPromise.resolve(myArg);
                 myPromise.then(correctCallback(done), incorrectCallback);
             });
             it('should call the rejected callback when rejected after being called', function (done) {
@@ -115,7 +115,7 @@
                     expect(promise().then().state()).to.equal(states[0]);
                 });
                 it('should return \'' + states[1] + '\' once ' + states[1] + ' after ' + states[1], function (done) {
-                    var myPromise = promise().fulfil(myArg).then(pass, fail);
+                    var myPromise = deferred().resolve(myArg).then(pass, fail);
                     myPromise.then(getState(myPromise.state, states[1], done), incorrectCallback);
                 });
                 it('should return \'' + states[1] + '\' once ' + states[1] + ' after ' + states[2], function (done) {
@@ -123,7 +123,7 @@
                     myPromise.then(getState(myPromise.state, states[1], done), incorrectCallback);
                 });
                 it('should return \'' + states[2] + '\' once ' + states[2] + ' after ' + states[1], function (done) {
-                    var myPromise = promise().fulfil(myArg).then(fail, pass);
+                    var myPromise = deferred().resolve(myArg).then(fail, pass);
                     myPromise.then(incorrectCallback, getState(myPromise.state, states[2], done));
                 });
                 it('should return \'' + states[2] + '\' once ' + states[2] + ' after ' + states[2], function (done) {
@@ -134,10 +134,10 @@
 
             describe('then()', function () {
                 it('should call chained fulfilled callback after calling fulfilled callback', function (done) {
-                    promise().fulfil(myArg).then(pass, fail).then(correctCallback(done), incorrectCallback);
+                    deferred().resolve(myArg).then(pass, fail).then(correctCallback(done), incorrectCallback);
                 });
                 it('should call chained rejected callback after calling fulfilled callback', function (done) {
-                    promise().fulfil(myArg).then(fail, pass).then(incorrectCallback, correctCallback(done));
+                    deferred().resolve(myArg).then(fail, pass).then(incorrectCallback, correctCallback(done));
                 });
                 it('should call chained fulfilled callback after calling rejected callback', function (done) {
                     promise().reject(myArg).then(fail, pass).then(correctCallback(done), incorrectCallback);
@@ -146,7 +146,7 @@
                     promise().reject(myArg).then(pass, fail).then(incorrectCallback, correctCallback(done));
                 });
                 it('should call chained fulfilled callback after calling fulfilled protection callback', function (done) {
-                    promise().fulfil(myArg).then(10, 10).then(correctCallback(done), incorrectCallback);
+                    deferred().resolve(myArg).then(10, 10).then(correctCallback(done), incorrectCallback);
                 });
                 it('should call chained rejected callback after calling rejected protection callback', function (done) {
                     promise().reject(myArg).then(10, 10).then(incorrectCallback, correctCallback(done));
