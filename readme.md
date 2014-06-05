@@ -4,7 +4,9 @@ A micro JS library for promises *based* on the [Promises/A+ specification](http:
 [![Build Status](https://travis-ci.org/ryansmith94/Pledges.png)](https://travis-ci.org/ryansmith94/Pledges)
 
 **License**
-[This work is licensed under a MIT License.](https://github.com/ryansmith94/Pledges/blob/master/license.md)
+This work is licensed under a [Attribution-NonCommercial-ShareAlike 4.0 International
+license](https://gist.githubusercontent.com/ryansmith94/b947ee33d7bfffff9d16/raw/bcd4b00739543c4a215a1f60538d899e2c22cdfd/BY-NC-SA.txt).
+
 
 **Contributing**
 Please make contributions by [forking](https://github.com/ryansmith94/Pledges/fork "/fork") the project and creating a [pull-request](https://github.com/ryansmith94/Pledges/pull/new/master "/pull-request"). Other contributions include maintaining the [Wiki](https://github.com/ryansmith94/Pledges/wiki "/wiki") and [issues](https://github.com/ryansmith94/Pledges/issues?state=open "/issues").
